@@ -40,7 +40,7 @@ public class modifyClass extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-try {
+		try {
 			
 			HttpSession session=request.getSession();
 			

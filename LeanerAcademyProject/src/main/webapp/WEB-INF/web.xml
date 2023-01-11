@@ -59,4 +59,24 @@
     <servlet-name>modifyClass</servlet-name>
     <url-pattern>/modifyClass</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CreateSubject</display-name>
+    <servlet-name>CreateSubject</servlet-name>
+    <servlet-class>com.LearnerAcademy.createSubject.CreateSubject</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreateSubject</servlet-name>
+    <url-pattern>/CreateSubject</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ModifySubject</display-name>
+    <servlet-name>ModifySubject</servlet-name>
+    <servlet-class>com.LearnerAcademy.ModifySubject.ModifySubject</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModifySubject</servlet-name>
+    <url-pattern>/ModifySubject</url-pattern>
+  </servlet-mapping>
 </web-app>

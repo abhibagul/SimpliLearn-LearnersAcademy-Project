@@ -76,9 +76,16 @@
 	<div class="p-3 control">
 
 
-	<h4>Manage Divisions and Standards</h4>
 	
 	
+	<div class="row">
+			<div class="col-sm-6">
+				<h4><i class="bi bi-cassette"></i> Manage Divisions and Standards</h4>
+			</div>
+			<div class="col-sm-6 text-end">
+				<a href="<%=request.getContextPath()%>/manageClasses/createClass.jsp" class="btn btn-primary"><i class="bi bi-plus-lg"></i> Create Class &amp; Division</a>
+			</div>
+		</div>
   
   
   	<div class="my-3 p-3 bg-body rounded shadow-sm">
@@ -119,9 +126,7 @@
 	</div>
   </form>
   </div>
-   <div class="col-lg-6 col-md-6 text-end">
-   <a href="<%=request.getContextPath()%>/manageClasses/createClass.jsp" class="btn btn-primary">Create Class &amp; Division</a>
-   </div>
+  
 	</div>
 	
 	
@@ -147,7 +152,7 @@
 					<h4>Divisions for Standard <%= request.getParameter("selectedStd") %></h4>
 					</div>
 					<div class="col-lg-6 col-sm-6 text-end">
-					 <a href="<%=request.getContextPath()%>/manageClasses/createClass.jsp&stdName=<%= request.getParameter("selectedStd") %>" class="btn btn-primary btn-sm">Create Division for <%= request.getParameter("selectedStd") %> std</a>
+					 <a href="<%=request.getContextPath()%>/manageClasses/createClass.jsp?stdName=<%= request.getParameter("selectedStd") %>" class="btn btn-primary btn-sm"><i class="bi bi-plus-lg"></i> Create Division for <%= request.getParameter("selectedStd") %> std</a>
 					</div>
 					</div>
 					<hr/>
