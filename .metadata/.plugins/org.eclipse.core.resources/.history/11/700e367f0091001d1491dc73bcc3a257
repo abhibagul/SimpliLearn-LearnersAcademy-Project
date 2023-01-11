@@ -1,0 +1,31 @@
+@charset "ISO-8859-1";
+
+/*css reser*/
+*, *::before, *::after{
+	box-sizing:border-box;
+}
+
+html,body{
+	padding: 0px;
+	margin:0px;
+	outline: 0px;
+	height: 100%;
+	width: 100%;
+}
+
+h1.title{
+	font-size: 15px;
+}
+
+main {
+    display: flex;
+        max-height: 100vh;
+    height: 100%;
+}
+main .sidebar{
+    flex-shrink:0;
+}
+
+main .data{
+    flex-grow: 1;
+}

@@ -1,0 +1,78 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<%@page import="java.sql.DriverManager"%>
+	<%@page import="java.sql.ResultSet"%>
+	<%@page import="java.sql.Statement"%>
+	<%@page import="java.sql.Connection"%>
+	<%
+		String session_u_name = (String)session.getAttribute("usname");
+		String role = (String)session.getAttribute("role");	
+	
+		if(role != "admin"){
+			response.sendRedirect("admin.jsp");
+		}
+		
+		String driverName = "com.mysql.jdbc.Driver";
+		String connectionUrl = "jdbc:mysql://localhost:3306/";
+		String dbName = "learnersacademy";
+		String userId = "root";
+		String password = "root12345";
+%>
+	<h4>Manage Classes Page</h4>
+	
+	
+  
+  
+  	<div class="my-3 p-3 bg-body rounded shadow-sm">
+		<form id="stdSelector" method="get"  class="row g-3">
+  <div class="col-lg-3 col-md-6 ">
+    <label for="standardSelector" class="form-label">Select Standard : </label>
+    <input type="hidden" name="page" value="manageClasses">
+	<select class="form-control" onchange="document.getElementById('stdSelector').submit()" name="selectedStd"  id="standardSelector">
+	<%
+	
+		try {
+			Class.forName(driverName);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	
+		Connection connection = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
+	
+		try{
+			
+			connection = DriverManager.getConnection(connectionUrl+dbName, userId, password);
+			statement=connection.createStatement();
+			String sql ="SELECT DISTINCT std FROM class";
+
+			resultSet = statement.executeQuery(sql);
+			
+			while(resultSet.next()){
+				%>
+				<option><%=resultSet.getString("std") %></option>
+				<%
+			}
+
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	
+	%>
+	
+	</select>
+  </div>
+  </form>
+	</div>
+
+</body>
+</html>

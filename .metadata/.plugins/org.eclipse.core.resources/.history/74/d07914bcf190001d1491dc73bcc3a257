@@ -1,0 +1,82 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<%@page import="java.sql.DriverManager"%>
+	<%@page import="java.sql.ResultSet"%>
+	<%@page import="java.sql.Statement"%>
+	<%@page import="java.sql.Connection"%>
+	<%
+		String session_u_name = (String)session.getAttribute("usname");
+		String role = (String)session.getAttribute("role");	
+	
+		if(role != "admin"){
+			response.sendRedirect("admin.jsp");
+		}
+		
+		String driverName = "com.mysql.jdbc.Driver";
+		String connectionUrl = "jdbc:mysql://localhost:3306/";
+		String dbName = "learnersacademy";
+		String userId = "root";
+		String password = "root12345";
+
+	<h4>Manage Classes Page</h4>
+	
+	<form class="row g-3">
+  <div class="col-md-6">
+    <label for="inputEmail4" class="form-label">Email</label>
+    <input type="email" class="form-control" id="inputEmail4">
+  </div>
+  <div class="col-md-6">
+    <label for="inputPassword4" class="form-label">Password</label>
+    <input type="password" class="form-control" id="inputPassword4">
+  </div>
+  </form>
+  
+  
+  	<div class="my-3 p-3 bg-body rounded shadow-sm">
+		<label for="standardSelector">Select Standard</label>
+	<select id="standardSelector">
+	<%
+	
+		try {
+			Class.forName(driverName);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	
+		Connection connection = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
+	
+		try{
+			
+			connection = DriverManager.getConnection(connectionUrl+dbName, userId, password);
+			statement=connection.createStatement();
+			String sql ="SELECT DISTINCT std FROM class";
+
+			resultSet = statement.executeQuery(sql);
+			
+			while(resultSet.next()){
+				%>
+				<option><%=resultSet.getString("std") %></option>
+				<%
+			}
+
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	
+	%>
+	
+	</select>
+	</div>
+
+</body>
+</html>

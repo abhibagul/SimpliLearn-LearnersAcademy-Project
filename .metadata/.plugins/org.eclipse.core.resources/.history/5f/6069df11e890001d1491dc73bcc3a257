@@ -1,0 +1,26 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Dashboard</title>
+</head>
+<body>
+	<%
+		String session_u_name = (String)session.getAttribute("usname");
+		String role = (String)session.getAttribute("role");	
+	
+		if(role != "admin"){
+			response.sendRedirect("admin.jsp");
+		}
+	
+		out.print("Hi "+session_u_name);
+	%>
+
+
+
+	<a href="logout.jsp">Logout</a>
+
+</body>
+</html>
