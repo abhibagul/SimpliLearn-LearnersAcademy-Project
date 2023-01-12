@@ -1,6 +1,0 @@
-INDEX VERSION 1.131+D:\Projects\simplilearn\codewithharry\LearnersAcademy\.metadata\.plugins\org.eclipse.jdt.core
-3316811551.index
-2977961124.index
-1865797976.index
-2966608350.index
-3791711483.index

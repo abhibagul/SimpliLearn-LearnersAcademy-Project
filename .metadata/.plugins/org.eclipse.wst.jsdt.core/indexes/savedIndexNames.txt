@@ -1,7 +1,0 @@
-INDEX VERSION 1.4+D:\Projects\simplilearn\codewithharry\LearnersAcademy\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-3403211368.index
-3316811551.index
-4121172317.index
-1168700735.index
-2132161438.index
-872129239.index

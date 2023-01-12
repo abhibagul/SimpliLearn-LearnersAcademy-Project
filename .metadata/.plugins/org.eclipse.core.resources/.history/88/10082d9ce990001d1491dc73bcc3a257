@@ -1,5 +1,0 @@
-@charset "ISO-8859-1";
-
-h1.title{
-	font-size: 15px;
-}
