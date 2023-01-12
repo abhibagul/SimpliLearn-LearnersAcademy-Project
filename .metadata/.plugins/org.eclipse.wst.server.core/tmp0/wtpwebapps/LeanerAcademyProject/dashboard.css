@@ -30,6 +30,8 @@ main .sidebar{
 
 main .data{
     flex-grow: 1;
+        max-height: 100vh;
+    overflow: auto;
 }
 
 header{

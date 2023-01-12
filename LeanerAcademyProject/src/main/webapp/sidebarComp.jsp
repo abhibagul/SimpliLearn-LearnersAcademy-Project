@@ -53,7 +53,7 @@
       </li>
       
       <li>
-        <a href="<%=request.getContextPath()%>/manageClasses.jsp" class="nav-link text-white">
+        <a href="<%=request.getContextPath()%>/manageSession.jsp" class="nav-link text-white">
           <i class="bi bi-person-video2"></i>
           Sessions
         </a>

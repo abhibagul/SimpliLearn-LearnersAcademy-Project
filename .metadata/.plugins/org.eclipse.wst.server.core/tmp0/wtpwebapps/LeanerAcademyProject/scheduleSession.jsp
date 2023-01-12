@@ -21,20 +21,23 @@
 	<%@page import="java.text.SimpleDateFormat"%>
 	<%@page import="java.text.ParseException"%>
 	<%@page import="java.util.Date"%>
+		<%@page import="com.LearnerAcademy.DBConfig.DBConfig" %>
 	<%
 		String session_u_name = (String)session.getAttribute("usname");
 		String role = (String)session.getAttribute("role");	
 	
 		if(role != "admin"){
-			response.sendRedirect(request.getContextPath() + "/admin.jsp");
+			response.sendRedirect("admin.jsp");
 			
 		}
 		
-		String driverName = "com.mysql.jdbc.Driver";
-		String connectionUrl = "jdbc:mysql://localhost:3306/";
-		String dbName = "learnersacademy";
-		String userId = "root";
-		String password = "root12345";
+		DBConfig dbc = new DBConfig();
+		
+		String driverName = dbc.getDriverName();
+		String connectionUrl = dbc.getConnectionUrl();
+		String dbName = dbc.getDbName();
+		String userId = dbc.getUserId();
+		String password = dbc.getPassword();
 		
 		String action = (String)request.getParameter("action");
 
@@ -149,15 +152,23 @@
 		
 		if(request.getParameter("step") != null && request.getParameter("step").equals("5")){
 			%>
-			<form method="post" action="<%= request.getContextPath() %>/createSession">
-					<input type="hidden" disabled name="action" value="createSession">
+			<form method="post" action="<%= request.getContextPath() %>/CreateSession">
+					<input type="hidden" name="action" value="createSession">
+					<input type="hidden" name="sesName" value="<%= sesName %>">
+					<input type="hidden" name="sesDate" value="<%= sesDate %>">
+					<input type="hidden" name="sesStart" value="<%= sesStart %>">
+					<input type="hidden" name="sesEnd" value="<%= sesEnd %>">
+					<input type="hidden" name="sesStd" value="<%= sesStd %>">
+					<input type="hidden" name="sesDiv" value="<%= sesDiv %>">
+					<input type="hidden" name="sesSub" value="<%= sesSub %>">
+					<input type="hidden" name="sesTeach" value="<%= sesTeach %>">
 					
 					<div class=" g-3 mb-3 align-items-center">
 					  <div class="col-5">
 					    <label for="sesName" class="col-form-label">Session Name</label>
 					  </div>
 					  <div class="col-auto">
-						<input  class="form-control"  type="text" disabled name="sesName" value="<%= sesName %>">
+						<input  class="form-control"  type="text" disabled name="sesName2" value="<%= sesName %>">
 					  </div>
 					</div>
 					
@@ -166,7 +177,7 @@
 					    <label for="sesDate" class="col-form-label">Session Date</label>
 					  </div>
 					  <div class="col-auto">
-						<input  class="form-control"  type="text" disabled name="sesDate" value="<%= sesDate %>">
+						<input  class="form-control"  type="text" disabled name="sesDate2" value="<%= sesDate %>">
 					  </div>
 					</div>
 					
@@ -175,7 +186,7 @@
 					    <label for="sesStart" class="col-form-label">Session Start Time</label>
 					  </div>
 					  <div class="col-auto">
-						<input  class="form-control"  type="text" disabled name="sesStart" value="<%= sesStart %>">
+						<input  class="form-control"  type="text" disabled name="sesStart2" value="<%= sesStart %>">
 					  </div>
 					</div>
 					
@@ -184,7 +195,7 @@
 					    <label for="sesEnd" class="col-form-label">Session End Time</label>
 					  </div>
 					  <div class="col-auto">
-						<input  class="form-control"  type="text" disabled name="sesEnd" value="<%= sesEnd %>">
+						<input  class="form-control"  type="text" disabled name="sesEnd2" value="<%= sesEnd %>">
 					  </div>
 					</div>
 					
@@ -194,7 +205,7 @@
 					    <label for="sesStd" class="col-form-label">Standard</label>
 					  </div>
 					  <div class="col-auto">
-						<input  class="form-control"  type="text" disabled name="sesStd" value="<%= sesStd %>">
+						<input  class="form-control"  type="text" disabled name="sesStd2" value="<%= sesStd %>">
 					  </div>
 					</div>
 					
@@ -203,7 +214,7 @@
 					    <label for="sesDiv" class="col-form-label">Division</label>
 					  </div>
 					  <div class="col-auto">
-						<input  class="form-control"  type="text" disabled name="sesDiv" value="<%= sesDiv %>">
+						<input  class="form-control"  type="text" disabled name="sesDiv2" value="<%= sesDiv %>">
 					  </div>
 					</div>
 					
@@ -212,7 +223,7 @@
 					    <label for="sesSub" class="col-form-label">Session Subject ID</label>
 					  </div>
 					  <div class="col-auto">
-						<input  class="form-control"  type="text" disabled name="sesSub" value="<%= sesSub %>">
+						<input  class="form-control"  type="text" disabled name="sesSub2" value="<%= sesSub %>">
 					  </div>
 					</div>
 					
@@ -221,7 +232,7 @@
 					    <label for="sesTeach" class="col-form-label">Session Teacher ID</label>
 					  </div>
 					  <div class="col-auto">
-						<input  class="form-control"  type="text" disabled name="sesTeach" value="<%= sesTeach %>">
+						<input  class="form-control"  type="text" disabled name="sesTeach2" value="<%= sesTeach %>">
 					  </div>
 					</div>
 					

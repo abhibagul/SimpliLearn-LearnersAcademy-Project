@@ -16,20 +16,23 @@
 	<%@page import="java.sql.Statement"%>
 	<%@page import="java.sql.Connection"%>
 	<%@page import="java.sql.PreparedStatement" %>
+		<%@page import="com.LearnerAcademy.DBConfig.DBConfig" %>
 	<%
 		String session_u_name = (String)session.getAttribute("usname");
 		String role = (String)session.getAttribute("role");	
 	
 		if(role != "admin"){
-			response.sendRedirect(request.getContextPath() + "/admin.jsp");
+			response.sendRedirect("admin.jsp");
 			
 		}
 		
-		String driverName = "com.mysql.jdbc.Driver";
-		String connectionUrl = "jdbc:mysql://localhost:3306/";
-		String dbName = "learnersacademy";
-		String userId = "root";
-		String password = "root12345";
+		DBConfig dbc = new DBConfig();
+		
+		String driverName = dbc.getDriverName();
+		String connectionUrl = dbc.getConnectionUrl();
+		String dbName = dbc.getDbName();
+		String userId = dbc.getUserId();
+		String password = dbc.getPassword();
 		
 		String action = (String)request.getParameter("action");
 

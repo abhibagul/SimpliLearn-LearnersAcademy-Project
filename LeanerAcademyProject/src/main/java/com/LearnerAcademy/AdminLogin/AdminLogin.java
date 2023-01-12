@@ -16,6 +16,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.LearnerAcademy.DBConfig.DBConfig;
+
 /**
  * Servlet implementation class AdminLogin
  */
@@ -46,10 +48,17 @@ public class AdminLogin extends HttpServlet {
 		
 		try {
 			
+			DBConfig dbc = new DBConfig();
+			String driverName = dbc.getDriverName();
+			String connectionUrl = dbc.getConnectionUrl();
+			String dbName = dbc.getDbName();
+			String userId = dbc.getUserId();
+			String passw = dbc.getPassword();
+	
 			HttpSession session=request.getSession();
-						
+			
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/LearnersAcademy", "root", "root12345");
+			Connection con = DriverManager.getConnection(connectionUrl+dbName, userId, passw);
 		
 			//input values
 			String uname = request.getParameter("username");

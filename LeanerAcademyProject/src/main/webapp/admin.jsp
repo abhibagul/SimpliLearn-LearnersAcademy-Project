@@ -8,7 +8,7 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-light">
 <%
 		String session_u_name = (String)session.getAttribute("usname");
 		String role = (String)session.getAttribute("role");	
@@ -25,10 +25,16 @@
 <form method="post" action="<%=request.getContextPath()%>/AdminLogin">
 <div class="row">
 <div class="col-sm-4 offset-4 my-4 ">
-	<h1 class="text-center">Admin Login</h1>
+<div class="my-3 p-3 bg-body rounded shadow-sm">
+	<h3 class="text-center">Admin Login</h3>
+	<hr/>
 	<%
 		if(invalid != null) {
-			out.print("<h5 class=\"text-danger text-center\">"+invalid + "</h5>");
+			%>
+			<div class="alert alert-danger" role="alert">
+			 <%= invalid %>
+			</div>
+			<%
 			request.getSession().setAttribute("invalid", null);
 		}
 	%>
@@ -46,7 +52,7 @@
 </div>
 </form>
 </div>
-
+</div>
 
 </body>
 </html>

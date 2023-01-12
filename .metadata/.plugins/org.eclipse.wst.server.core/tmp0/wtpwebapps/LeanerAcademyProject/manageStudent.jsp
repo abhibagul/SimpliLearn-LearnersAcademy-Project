@@ -16,6 +16,7 @@
 	<%@page import="java.sql.Statement"%>
 	<%@page import="java.sql.Connection"%>
 	<%@page import="java.sql.PreparedStatement" %>
+		<%@page import="com.LearnerAcademy.DBConfig.DBConfig" %>
 	<%
 		String session_u_name = (String)session.getAttribute("usname");
 		String role = (String)session.getAttribute("role");	
@@ -25,11 +26,13 @@
 			
 		}
 		
-		String driverName = "com.mysql.jdbc.Driver";
-		String connectionUrl = "jdbc:mysql://localhost:3306/";
-		String dbName = "learnersacademy";
-		String userId = "root";
-		String password = "root12345";
+		DBConfig dbc = new DBConfig();
+		
+		String driverName = dbc.getDriverName();
+		String connectionUrl = dbc.getConnectionUrl();
+		String dbName = dbc.getDbName();
+		String userId = dbc.getUserId();
+		String password = dbc.getPassword();
 		
 		
 		String action = (String) request.getParameter("action");
@@ -183,7 +186,6 @@
 									<td class="text-center"><%= resultSet.getString("std") %></td>
 									<td class="text-center"><%= resultSet.getString("class") %></td>
 									<td class="text-center">
-										
 										<form class="inline-form" method="post" action="<%=request.getContextPath()%>/manageStudent.jsp">
 											<input type="hidden" name="action" value="deleteStudent">
 											<input type="hidden" name="studentId" value="<%= resultSet.getString("id") %>">
