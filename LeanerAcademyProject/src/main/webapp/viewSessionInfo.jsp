@@ -94,9 +94,6 @@
 			//out.print("Content: " + action + " for std, " + request.getParameter("selectedStd"));
 			
 				
-				
-				
-					
 					PreparedStatement ps = connection.prepareStatement("SELECT * FROM session where id=?");
 					ps.setString(1, request.getParameter("sesId"));
 					
