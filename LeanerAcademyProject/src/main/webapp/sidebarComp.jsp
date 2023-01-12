@@ -46,7 +46,7 @@
       </li>
       
       <li>
-        <a href="<%=request.getContextPath()%>/manageClasses.jsp" class="nav-link text-white">
+        <a href="<%=request.getContextPath()%>/manageStudent.jsp" class="nav-link text-white">
           <i class="bi bi-people-fill"></i>
           Students
         </a>
@@ -65,7 +65,7 @@
     <hr>
     <ul class="nav nav-pills flex-column">
      <li>
-        <a href="<%=request.getContextPath()%>/manageClasses.jsp" class="nav-link text-white bg-primary">
+        <a href="<%=request.getContextPath()%>/scheduleSession.jsp" class="nav-link text-white bg-primary">
           <i class="bi bi-person-video2"></i>
           Schedule Sessions
         </a>

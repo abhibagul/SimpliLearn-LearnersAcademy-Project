@@ -54,23 +54,21 @@
 
 	<%
 	
-	String className = "";
-	String stdName = "";
-	String divName = "";
+	String teacherName = "";
 	
 	if(request.getParameter("action") != null && action.equals("creation")){
 		
 		if(request.getParameter("status") != null && request.getParameter("status").equals("1")){
 			%>
 			<div class="alert alert-success" role="alert">
-			 Class Created successfully!
+			 Teacher Added successfully!
 			</div>
 						
 			<%
 		}else if(request.getParameter("status") != null && request.getParameter("status").equals("0")){
 			%>
 			<div class="alert alert-danger" role="alert">
-			 Unable to create the class, Try again!
+			 Unable to add the Teacher, Try again!
 			</div>
 						
 			<%
@@ -79,55 +77,33 @@
 		
 	}
 	
-	if(request.getParameter("className") != null){
-		className = request.getParameter("className");
+	if(request.getParameter("teacherName") != null){
+		teacherName = request.getParameter("teacherName");
 	}
 	
-	if(request.getParameter("stdName") != null){
-		stdName = request.getParameter("stdName");
-	}
-	
-	if(request.getParameter("divName") != null){
-		divName = request.getParameter("divName");
-	}
+
 	
 	%>
 
 	<div class="my-3 p-3 bg-body rounded shadow-sm">
 	
-		<form method="post" action="<%= request.getContextPath() %>/createClass">
+		<form method="post" action="<%= request.getContextPath() %>/AddNewTeacher">
 		
 		<input type="hidden" name="action" value="createClass">
 		
 		<div class=" g-3 mb-3 align-items-center">
 		  <div class="col-5">
-		    <label for="className" class="col-form-label">Name:</label>
+		    <label for="teacherName" class="col-form-label">Name:</label>
 		  </div>
 		  <div class="col-auto">
-		    <input type="text" id="className" name="className" value="<%= className %>" required class="form-control" aria-describedby="className">
+		    <input type="text" id="teacherName" name="teacherName" value="<%= teacherName %>" required class="form-control" aria-describedby="teacherName">
 		  </div>
 		</div>
 		
 		
-		<div class=" g-3 mb-3 align-items-center">
-		  <div class="col-5">
-		    <label for="stdName" class="col-form-label">Standards:</label>
-		  </div>
-		  <div class="col-auto">
-		    <input type="text" id="stdName" name="stdName" value="<%= stdName %>" required class="form-control" aria-describedby="stdName">
-		  </div>
-		</div>
+	
 		
-		<div class=" g-3 mb-3 align-items-center">
-		  <div class="col-5">
-		    <label for="divName" class="col-form-label">Subjects</label>
-		  </div>
-		  <div class="col-auto">
-		    <input type="text" id="divName" name="divName" value="<%= divName %>" required class="form-control" aria-describedby="divName">
-		  </div>
-		</div>
-		
-		<input class="btn btn-primary" type="submit" value="Create">
+		<input class="btn btn-primary" type="submit" value="Add">
 		<input class="btn btn-light" type="reset" value="Reset">
 		
 		

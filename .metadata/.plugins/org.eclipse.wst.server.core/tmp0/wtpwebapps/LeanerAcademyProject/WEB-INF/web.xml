@@ -79,4 +79,44 @@
     <servlet-name>ModifySubject</servlet-name>
     <url-pattern>/ModifySubject</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddTeacher</display-name>
+    <servlet-name>AddTeacher</servlet-name>
+    <servlet-class>com.LearnerAcademy.AddTeacher</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddTeacher</servlet-name>
+    <url-pattern>/AddTeacher</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddNewTeacher</display-name>
+    <servlet-name>AddNewTeacher</servlet-name>
+    <servlet-class>com.LearnerAcademy.AddNewTeacher.AddNewTeacher</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddNewTeacher</servlet-name>
+    <url-pattern>/AddNewTeacher</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CreateStudent</display-name>
+    <servlet-name>CreateStudent</servlet-name>
+    <servlet-class>com.LearnerAcademy.CreateStudent.CreateStudent</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreateStudent</servlet-name>
+    <url-pattern>/CreateStudent</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CreateSession</display-name>
+    <servlet-name>CreateSession</servlet-name>
+    <servlet-class>com.LearnerAcademy.CreateSession.CreateSession</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreateSession</servlet-name>
+    <url-pattern>/CreateSession</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -23,7 +23,10 @@ java_string=206,145,120
 org.eclipse.wst.jsdt.ui.editor.tab.width=
 org.eclipse.wst.jsdt.ui.formatterprofiles.version=11
 org.eclipse.wst.jsdt.ui.javadoclocations.migrated=true
+org.eclipse.wst.jsdt.ui.text.custom_templates=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><templates/>
+org.eclipse.wst.jsdt.ui.text.templates_migrated=true
 overriddenByCSS=,content_assist_completion_replacement_background,content_assist_completion_replacement_foreground,content_assist_parameters_background,content_assist_parameters_foreground,content_assist_proposals_background,content_assist_proposals_foreground,java_bracket,java_comment_task_tag,java_default,java_doc_default,java_doc_keyword,java_doc_link,java_doc_tag,java_keyword,java_keyword_return,java_multi_line_comment,java_operator,java_single_line_comment,java_string,semanticHighlighting.deprecatedMember.color,semanticHighlighting.localVariable.color,semanticHighlighting.localVariable.enabled,semanticHighlighting.localVariableDeclaration.color,semanticHighlighting.localVariableDeclaration.enabled,semanticHighlighting.parameterVariable.color,semanticHighlighting.parameterVariable.enabled,tagName,sourceHoverBackgroundColor,sourceHoverBackgroundColor.SystemDefault,javaScriptOccurrenceIndicationColor,
+proposalOrderMigrated=true
 semanticHighlighting.deprecatedMember.color=171,31,54
 semanticHighlighting.localVariable.color=255,191,38
 semanticHighlighting.localVariable.enabled=true
