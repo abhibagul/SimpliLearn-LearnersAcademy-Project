@@ -26,13 +26,14 @@
 			
 		}
 		
-		DBConfig dbc = new DBConfig();
 		
+		DBConfig dbc = new DBConfig();
 		String driverName = dbc.getDriverName();
 		String connectionUrl = dbc.getConnectionUrl();
 		String dbName = dbc.getDbName();
 		String userId = dbc.getUserId();
 		String password = dbc.getPassword();
+		
 		
 		
 		String action = (String) request.getParameter("action");

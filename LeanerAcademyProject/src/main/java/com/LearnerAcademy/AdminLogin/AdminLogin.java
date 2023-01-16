@@ -54,6 +54,8 @@ public class AdminLogin extends HttpServlet {
 			String dbName = dbc.getDbName();
 			String userId = dbc.getUserId();
 			String passw = dbc.getPassword();
+			
+			
 	
 			HttpSession session=request.getSession();
 			

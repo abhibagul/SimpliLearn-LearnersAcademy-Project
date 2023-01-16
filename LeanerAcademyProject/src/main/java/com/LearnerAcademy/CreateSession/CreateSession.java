@@ -45,12 +45,17 @@ public class CreateSession extends HttpServlet {
 		try {
 			
 			DBConfig dbc = new DBConfig();
-			String driverName = dbc.getDriverName();
+			/*String driverName = dbc.getDriverName();
 			String connectionUrl = dbc.getConnectionUrl();
 			String dbName = dbc.getDbName();
 			String userId = dbc.getUserId();
-			String password = dbc.getPassword();
-	
+			String passw = dbc.getPassword();*/
+			
+			String driverName = "com.mysql.jdbc.Driver";
+			String connectionUrl = "jdbc:mysql://localhost:3306/";
+			String dbName = "learnersacademy";
+			String userId = "root";
+			String password = "root12345";
 			HttpSession session=request.getSession();
 			
 			Class.forName("com.mysql.cj.jdbc.Driver");

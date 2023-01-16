@@ -51,6 +51,8 @@ public class createClass extends HttpServlet {
 			String dbName = dbc.getDbName();
 			String userId = dbc.getUserId();
 			String password = dbc.getPassword();
+			
+			
 	
 			HttpSession session=request.getSession();
 			

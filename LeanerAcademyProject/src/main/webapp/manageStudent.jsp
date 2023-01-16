@@ -27,12 +27,13 @@
 		}
 		
 		DBConfig dbc = new DBConfig();
-		
 		String driverName = dbc.getDriverName();
 		String connectionUrl = dbc.getConnectionUrl();
 		String dbName = dbc.getDbName();
 		String userId = dbc.getUserId();
-		String password = dbc.getPassword();
+		String pass = dbc.getPassword();
+		
+		
 		
 		
 		String action = (String) request.getParameter("action");
@@ -49,7 +50,7 @@
 	
 		try{
 			
-			connection = DriverManager.getConnection(connectionUrl+dbName, userId, password);
+			connection = DriverManager.getConnection(connectionUrl+dbName, userId, pass);
 			statement=connection.createStatement();
 		
 			//deleting division
@@ -124,8 +125,35 @@
 	
 	</select>
 	</div>
+	
+	
+	
   </form>
   </div>
+  
+   <div class="col-lg-6 col-md-6 text-end">
+   
+   		<%
+   		
+   		if(action != null && !request.getParameter("selectedStd").equals("empty") ){
+   		
+   		%>
+   		<form id="stdSelector" action="<%=request.getContextPath()%>/manageStudent.jsp" method="post"  class="row ">
+   			<input type="hidden" name="action" value="classSelector">
+   			<input type="hidden" name="selectedStd" value="<%= request.getParameter("selectedStd")  %>">
+   			<div class=" col-sm-9">
+   			<input type="text" placeholder="Search Student" <%  if(request.getParameter("query") != null){  %> value="<%= request.getParameter("query") %>" <% } %> name="query" class="form-control ">
+   			</div><div class="col-sm-3">
+   			<input type="submit" class="btn btn-primary" value="search">
+   			</div>
+   		</form>
+   		
+   		<%
+   		
+   		}
+   		
+   		%>
+   </div>
   
 	</div>
 	
@@ -142,8 +170,21 @@
 				
 				if( action.equals("classSelector") || action.equals("deleteStudent")){
 					
-					PreparedStatement ps = connection.prepareStatement("SELECT * FROM student where std=?");
+					String studentListQuery = "SELECT * FROM student where std=?";
+					
+					
+					if(request.getParameter("query") != null){
+						studentListQuery += " AND name LIKE ?";
+					}
+					
+					
+					PreparedStatement ps = connection.prepareStatement(studentListQuery);
 					ps.setString(1, request.getParameter("selectedStd"));
+					
+					
+					if(request.getParameter("query") != null){
+						ps.setString(2, "%" + request.getParameter("query") + "%");
+					}
 					
 					%>
 					<div class="row">

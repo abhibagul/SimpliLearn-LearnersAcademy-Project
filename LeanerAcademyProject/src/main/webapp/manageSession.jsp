@@ -27,7 +27,6 @@
 		}
 		
 		DBConfig dbc = new DBConfig();
-		
 		String driverName = dbc.getDriverName();
 		String connectionUrl = dbc.getConnectionUrl();
 		String dbName = dbc.getDbName();
@@ -95,10 +94,38 @@
     <input type="hidden" name="action" value="dateSelector">
     </div>
     <div class="col-sm-6">
-		<input type="date" class="form-control" name="sesDate" onchange="document.getElementById('sesDateSel').submit();">
+		<input type="date" class="form-control" name="sesDate" <%  if(request.getParameter("sesDate") != null){  %> value="<%= request.getParameter("sesDate") %>" <% } %>  onchange="document.getElementById('sesDateSel').submit();">
 	</div>
   </form>
   </div>
+  
+  
+  <!-- search func -->
+   <div class="col-lg-6 col-md-6 ">
+   
+   
+   		<%
+   		
+   		if(action != null && (action.equals("dateSelector") || action.equals("deleteStudent") )){
+   		
+   		%>
+   		<form id="stdSelector" action="<%=request.getContextPath()%>/manageSession.jsp" method="post"  class="row ">
+   			<input type="hidden" name="action" value="dateSelector">
+   			<input type="hidden" name="sesDate" value="<%= request.getParameter("sesDate")  %>">
+   			<div class=" col-sm-9">
+   			<input type="text" placeholder="Search Session" <%  if(request.getParameter("query") != null){  %> value="<%= request.getParameter("query") %>" <% } %> name="query" class="form-control ">
+   			</div><div class="col-sm-3">
+   			<input type="submit" class="btn btn-primary" value="search">
+   			</div>
+   		</form>
+   		
+   		<%
+   		
+   		}
+   		
+   		%>
+   
+   </div>
   
 	</div>
 	
@@ -115,8 +142,18 @@
 				
 				if( action.equals("dateSelector") || action.equals("deleteStudent")){
 					
-					PreparedStatement ps = connection.prepareStatement("SELECT * FROM session where sessionDate=?");
+					String searchSession = "SELECT * FROM session where sessionDate=?";
+					
+					if(request.getParameter("query") != null){
+						searchSession += " AND sessionName LIKE ?";
+					}
+					
+					PreparedStatement ps = connection.prepareStatement(searchSession);
 					ps.setString(1, request.getParameter("sesDate"));
+					
+					if(request.getParameter("query") != null){
+						ps.setString(2, "%" + request.getParameter("query") + "%");
+					}
 					
 					%>
 					<div class="row">

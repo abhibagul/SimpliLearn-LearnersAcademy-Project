@@ -26,7 +26,6 @@
 		}
 		
 		DBConfig dbc = new DBConfig();
-		
 		String driverName = dbc.getDriverName();
 		String connectionUrl = dbc.getConnectionUrl();
 		String dbName = dbc.getDbName();

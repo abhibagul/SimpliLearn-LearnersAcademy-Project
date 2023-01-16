@@ -1,19 +1,21 @@
 package com.LearnerAcademy.ModifySubject;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.LinkedList;
 
 import com.LearnerAcademy.DBConfig.DBConfig;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class ModifySubject
@@ -53,6 +55,8 @@ public class ModifySubject extends HttpServlet {
 			String dbName = dbc.getDbName();
 			String userId = dbc.getUserId();
 			String password = dbc.getPassword();
+			
+			
 	
 			HttpSession session=request.getSession();
 			
@@ -72,22 +76,44 @@ public class ModifySubject extends HttpServlet {
 			String oldSubName =  request.getParameter("oldSubName");
 			String subName = request.getParameter("subName");
 			String[] stdName = request.getParameterValues("stdName");
+			LinkedList<String> ignoreRows = new LinkedList<String>();
 			
 			
 			//remove old records
-			PreparedStatement delPS = con.prepareStatement("DELETE FROM subject WHERE name=?");
+			String delStr = "DELETE FROM subject WHERE name=?";
+			
+			for(int j=0; j < stdName.length; j++) {
+				delStr += " and class <> \"" + stdName[j] + "\"";
+			}
+			
+			PreparedStatement delPS = con.prepareStatement(delStr);
 			delPS.setString(1, oldSubName);
 			int iDel = delPS.executeUpdate();
+			
+			//get all std for subject 
+			PreparedStatement allRecPS = con.prepareStatement("SELECT class FROM subject where name=?");
+			allRecPS.setString(1, oldSubName);
+			ResultSet allStd = allRecPS.executeQuery();
+			
+			while(allStd.next()) {
+				String compareStr = allStd.getString("class");
+				if(Arrays.asList(stdName).contains( compareStr)) {
+					ignoreRows.add(compareStr);
+				}
+			}
 			
 			
 			//add new records
 			int i = 0;
 			for(int c=0; c< stdName.length; c++) {
+								
 				//retrive values from db
-				PreparedStatement ps = con.prepareStatement("INSERT INTO subject (name,class) VALUES (?,?)");
-				ps.setString(1, subName);
-				ps.setString(2, stdName[c]);
-				i += ps.executeUpdate();
+				if(!ignoreRows.contains(stdName[c])) {
+					PreparedStatement ps = con.prepareStatement("INSERT INTO subject (name,class) VALUES (?,?)");
+					ps.setString(1, subName);
+					ps.setString(2, stdName[c]);
+					i += ps.executeUpdate();
+				}
 			}
 			
 			if(i > 0) {

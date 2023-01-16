@@ -27,7 +27,6 @@
 		}
 		
 		DBConfig dbc = new DBConfig();
-		
 		String driverName = dbc.getDriverName();
 		String connectionUrl = dbc.getConnectionUrl();
 		String dbName = dbc.getDbName();
@@ -129,6 +128,34 @@
   </form>
   </div>
   
+  
+    <!-- search func -->
+   <div class="col-lg-6 col-md-6 ">
+   
+   
+   		<%
+   		
+   		if(action != null  && !request.getParameter("selectedStd").equals("empty") ){
+   		
+   		%>
+   		<form id="stdSelector" action="<%=request.getContextPath()%>/manageSubjects.jsp" method="post"  class="row ">
+   			<input type="hidden" name="action" value="classSelector">
+   			<input type="hidden" name="selectedStd" value="<%= request.getParameter("selectedStd")  %>">
+   			<div class=" col-sm-9">
+   			<input type="text" placeholder="Search Subject" <%  if(request.getParameter("query") != null){  %> value="<%= request.getParameter("query") %>" <% } %> name="query" class="form-control ">
+   			</div><div class="col-sm-3">
+   			<input type="submit" class="btn btn-primary" value="search">
+   			</div>
+   		</form>
+   		
+   		<%
+   		
+   		}
+   		
+   		%>
+   
+   </div>
+  
 	</div>
 	
 	
@@ -144,8 +171,18 @@
 				
 				if( action.equals("classSelector") || action.equals("deleteSubject")){
 					
-					PreparedStatement ps = connection.prepareStatement("SELECT * FROM subject where class=?");
+					String subjectQuery = "SELECT * FROM subject where class=?";
+					
+					if(request.getParameter("query") != null){
+						subjectQuery += " AND name LIKE ?";
+					}
+					
+					PreparedStatement ps = connection.prepareStatement(subjectQuery);
 					ps.setString(1, request.getParameter("selectedStd"));
+					
+					if(request.getParameter("query") != null){
+						ps.setString(2, "%" + request.getParameter("query") + "%");
+					}
 					
 					%>
 					<div class="row">
